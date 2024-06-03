@@ -1,3 +1,8 @@
+mod data;
+
+use data::build;
+pub use data::Country;
+
 use chrono::{Datelike, NaiveDate};
 use once_cell::sync::Lazy;
 use std::{
@@ -6,8 +11,17 @@ use std::{
     sync::RwLock,
 };
 
+type RepeatingHoliday = holiday::Holiday<&'static str>;
+pub type HolidayPerCountryMap = HashMap<Year, BTreeMap<NaiveDate, Holiday>>;
+
+#[derive(Default)]
+pub struct HolidayCombo {
+    pub repeating_holidays: Vec<RepeatingHoliday>,
+    pub special_days: HolidayPerCountryMap,
+}
+
 /// Type alias for Holiday map.
-pub type HolidayMap = HashMap<Country, HashMap<Year, BTreeMap<NaiveDate, Holiday>>>;
+pub type HolidayMap = HashMap<Country, HolidayCombo>;
 
 /// Type alias for Year.
 pub type Year = i32;
@@ -30,36 +44,50 @@ pub fn init() -> Result<()> {
 /// not available, it will return `Err(Error)`. If the specified date is not a holiday, it
 /// will return `Ok(None)`. Otherwise, it will return `Ok(Some(Holiday))`.
 pub fn get(country: Country, date: NaiveDate) -> Result<Option<Holiday>> {
-    let Some(data) = Lazy::get(&DATA) else { return Err(Error::Uninitialized); };
+    let Some(data) = Lazy::get(&DATA) else {
+        return Err(Error::Uninitialized);
+    };
 
     let data = data.read().map_err(|e| Error::LockError(e.to_string()))?;
-    let Some(map) = data.get(&country) else {
+    let Some(combo) = data.get(&country) else {
         return Err(Error::CountryNotAvailable);
     };
 
-    let Some(map) = map.get(&date.year()) else {
+    let Some(map) = combo.special_days.get(&date.year()) else {
         return Err(Error::YearNotAvailable);
     };
 
-    Ok(map.get(&date).cloned())
+    if let Some(d) = map.get(&date) {
+        return Ok(Some(d.clone()));
+    }
+
+    Ok(combo
+        .repeating_holidays
+        .iter()
+        .find(|h| **h == date)
+        .map(|day| {
+            return Holiday::new(country, country.to_string(), date, *day.name());
+        }))
 }
 
 /// Check if the specified date is a holiday. If the specified country or year is
 /// not available, it will return `Err(Error)`. If the date is not a holiday, it
 /// will return `Ok(false)`. Otherwise, it will return `Ok(true)`.
 pub fn contains(country: Country, date: NaiveDate) -> Result<bool> {
-    let Some(data) = Lazy::get(&DATA) else { return Err(Error::Uninitialized); };
+    let Some(data) = Lazy::get(&DATA) else {
+        return Err(Error::Uninitialized);
+    };
 
     let data = data.read().map_err(|e| Error::LockError(e.to_string()))?;
-    let Some(map) = data.get(&country) else {
+    let Some(combo) = data.get(&country) else {
         return Err(Error::CountryNotAvailable);
     };
 
-    let Some(map) = map.get(&date.year()) else {
+    let Some(map) = combo.special_days.get(&date.year()) else {
         return Err(Error::YearNotAvailable);
     };
 
-    Ok(map.get(&date).is_some())
+    Ok(map.get(&date).is_some() || combo.repeating_holidays.iter().any(|h| *h == date))
 }
 
 #[derive(Debug)]
@@ -89,7 +117,9 @@ impl std::iter::Iterator for Iter {
 
 /// Iterate holidays by dates.
 pub fn iter(country: Country, since: NaiveDate, until: NaiveDate) -> Result<Iter> {
-    let Some(data) = Lazy::get(&DATA) else { return Err(Error::Uninitialized); };
+    let Some(data) = Lazy::get(&DATA) else {
+        return Err(Error::Uninitialized);
+    };
 
     let mut buf = VecDeque::new();
 
@@ -100,7 +130,9 @@ pub fn iter(country: Country, since: NaiveDate, until: NaiveDate) -> Result<Iter
             return Err(Error::CountryNotAvailable);
         };
 
-        let Some(map) = map.get(&y) else {
+        // TODO: map.repeating_holidays
+
+        let Some(map) = map.special_days.get(&y) else {
             break;
         };
 
@@ -219,5 +251,3 @@ pub trait NaiveDateExt {
 }
 
 impl NaiveDateExt for NaiveDate {}
-
-include!("data.rs");
