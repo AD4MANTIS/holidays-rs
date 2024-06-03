@@ -2,7 +2,7 @@ use std::collections::{BTreeMap, HashMap};
 
 use chrono::NaiveDate;
 
-use crate::{Holiday, HolidayCombo, NaiveDateExt, RepeatingHoliday};
+use crate::{Holiday, HolidayCombo, HolidayPerCountryMap, NaiveDateExt, RepeatingHoliday};
 
 /// Germany.
 #[cfg(feature = "DE")]
@@ -41,8 +41,10 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
     RepeatingHoliday::new_fixed("Erster Weihnachtstag", 12, 25);
     RepeatingHoliday::new_fixed("Zweiter Weihnachtstag", 12, 26);
 
-    if build_year(years, 2000) {
-        let mut m = vec![
+    build_year(
+        years,
+        2000,
+        vec![
             Holiday::new(
                 Country::DE,
                 "Germany",
@@ -67,15 +69,11 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
                 NaiveDate::from_ymd_res(2000, 6, 12)?,
                 "Pfingstmontag",
             ),
-        ]
-        .into_iter()
-        .map(|h| (h.date, h))
-        .collect();
+        ],
+        &mut map,
+    );
 
-        map.insert(2000, m);
-    }
-
-    if build_year(years, 2001) {
+    if should_build_year(years, 2001) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2001, 4, 13)?;
@@ -103,7 +101,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2001, m);
     }
 
-    if build_year(years, 2002) {
+    if should_build_year(years, 2002) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2002, 3, 29)?;
@@ -131,7 +129,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2002, m);
     }
 
-    if build_year(years, 2003) {
+    if should_build_year(years, 2003) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2003, 4, 18)?;
@@ -159,7 +157,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2003, m);
     }
 
-    if build_year(years, 2004) {
+    if should_build_year(years, 2004) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2004, 4, 9)?;
@@ -187,7 +185,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2004, m);
     }
 
-    if build_year(years, 2005) {
+    if should_build_year(years, 2005) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2005, 3, 25)?;
@@ -215,7 +213,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2005, m);
     }
 
-    if build_year(years, 2006) {
+    if should_build_year(years, 2006) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2006, 4, 14)?;
@@ -243,7 +241,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2006, m);
     }
 
-    if build_year(years, 2007) {
+    if should_build_year(years, 2007) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2007, 4, 6)?;
@@ -271,7 +269,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2007, m);
     }
 
-    if build_year(years, 2008) {
+    if should_build_year(years, 2008) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2008, 3, 21)?;
@@ -303,7 +301,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2008, m);
     }
 
-    if build_year(years, 2009) {
+    if should_build_year(years, 2009) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2009, 4, 10)?;
@@ -331,7 +329,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2009, m);
     }
 
-    if build_year(years, 2010) {
+    if should_build_year(years, 2010) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2010, 4, 2)?;
@@ -359,7 +357,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2010, m);
     }
 
-    if build_year(years, 2011) {
+    if should_build_year(years, 2011) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2011, 4, 22)?;
@@ -387,7 +385,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2011, m);
     }
 
-    if build_year(years, 2012) {
+    if should_build_year(years, 2012) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2012, 4, 6)?;
@@ -415,7 +413,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2012, m);
     }
 
-    if build_year(years, 2013) {
+    if should_build_year(years, 2013) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2013, 3, 29)?;
@@ -443,7 +441,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2013, m);
     }
 
-    if build_year(years, 2014) {
+    if should_build_year(years, 2014) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2014, 4, 18)?;
@@ -471,7 +469,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2014, m);
     }
 
-    if build_year(years, 2015) {
+    if should_build_year(years, 2015) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2015, 4, 3)?;
@@ -499,7 +497,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2015, m);
     }
 
-    if build_year(years, 2016) {
+    if should_build_year(years, 2016) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2016, 3, 25)?;
@@ -527,7 +525,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2016, m);
     }
 
-    if build_year(years, 2017) {
+    if should_build_year(years, 2017) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2017, 4, 14)?;
@@ -561,7 +559,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2017, m);
     }
 
-    if build_year(years, 2018) {
+    if should_build_year(years, 2018) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2018, 3, 30)?;
@@ -589,7 +587,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2018, m);
     }
 
-    if build_year(years, 2019) {
+    if should_build_year(years, 2019) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2019, 4, 19)?;
@@ -617,7 +615,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2019, m);
     }
 
-    if build_year(years, 2020) {
+    if should_build_year(years, 2020) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2020, 4, 10)?;
@@ -645,7 +643,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2020, m);
     }
 
-    if build_year(years, 2021) {
+    if should_build_year(years, 2021) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2021, 4, 2)?;
@@ -673,7 +671,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2021, m);
     }
 
-    if build_year(years, 2022) {
+    if should_build_year(years, 2022) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2022, 4, 15)?;
@@ -701,7 +699,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2022, m);
     }
 
-    if build_year(years, 2023) {
+    if should_build_year(years, 2023) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2023, 4, 7)?;
@@ -729,7 +727,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2023, m);
     }
 
-    if build_year(years, 2024) {
+    if should_build_year(years, 2024) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2024, 3, 29)?;
@@ -757,7 +755,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2024, m);
     }
 
-    if build_year(years, 2025) {
+    if should_build_year(years, 2025) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2025, 4, 18)?;
@@ -785,7 +783,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2025, m);
     }
 
-    if build_year(years, 2026) {
+    if should_build_year(years, 2026) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2026, 4, 3)?;
@@ -813,7 +811,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2026, m);
     }
 
-    if build_year(years, 2027) {
+    if should_build_year(years, 2027) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2027, 3, 26)?;
@@ -841,7 +839,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2027, m);
     }
 
-    if build_year(years, 2028) {
+    if should_build_year(years, 2028) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2028, 4, 14)?;
@@ -869,7 +867,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2028, m);
     }
 
-    if build_year(years, 2029) {
+    if should_build_year(years, 2029) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2029, 3, 30)?;
@@ -897,7 +895,7 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
         map.insert(2029, m);
     }
 
-    if build_year(years, 2030) {
+    if should_build_year(years, 2030) {
         let mut m = BTreeMap::new();
 
         let date = NaiveDate::from_ymd_res(2030, 4, 19)?;

@@ -2,7 +2,7 @@ mod de;
 
 use std::collections::HashSet;
 
-use crate::{Error, HolidayMap, Result, Year};
+use crate::{Error, Holiday, HolidayMap, HolidayPerCountryMap, Result, Year};
 
 /// Two-letter country codes defined in ISO 3166-1 alpha-2 .
 #[allow(dead_code)]
@@ -1458,6 +1458,21 @@ pub(crate) fn build(
     Ok(map)
 }
 
-fn build_year(years: &Option<&std::ops::Range<Year>>, year: Year) -> bool {
+fn should_build_year(years: &Option<&std::ops::Range<Year>>, year: Year) -> bool {
     years.is_none() || years.unwrap().contains(&year)
+}
+
+fn build_year(
+    years: &Option<&std::ops::Range<Year>>,
+    year: Year,
+    holidays: impl IntoIterator<Item = Holiday>,
+    map: &mut HolidayPerCountryMap,
+) {
+    if !should_build_year(years, year) {
+        return;
+    }
+
+    let m = holidays.into_iter().map(|h| (h.date, h)).collect();
+
+    map.insert(year, m);
 }
