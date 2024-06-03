@@ -42,29 +42,35 @@ pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HolidayCombo> {
     RepeatingHoliday::new_fixed("Zweiter Weihnachtstag", 12, 26);
 
     if build_year(years, 2000) {
-        let mut m = BTreeMap::new();
-
-        let date = NaiveDate::from_ymd_res(2000, 4, 21)?;
-        m.insert(
-            date,
-            Holiday::new(Country::DE, "Germany", date, "Karfreitag"),
-        );
-        let date = NaiveDate::from_ymd_res(2000, 4, 24)?;
-        m.insert(
-            date,
-            Holiday::new(Country::DE, "Germany", date, "Ostermontag"),
-        );
-
-        let date = NaiveDate::from_ymd_res(2000, 6, 1)?;
-        m.insert(
-            date,
-            Holiday::new(Country::DE, "Germany", date, "Christi Himmelfahrt"),
-        );
-        let date = NaiveDate::from_ymd_res(2000, 6, 12)?;
-        m.insert(
-            date,
-            Holiday::new(Country::DE, "Germany", date, "Pfingstmontag"),
-        );
+        let mut m = vec![
+            Holiday::new(
+                Country::DE,
+                "Germany",
+                NaiveDate::from_ymd_res(2000, 4, 21)?,
+                "Karfreitag",
+            ),
+            Holiday::new(
+                Country::DE,
+                "Germany",
+                NaiveDate::from_ymd_res(2000, 4, 24)?,
+                "Ostermontag",
+            ),
+            Holiday::new(
+                Country::DE,
+                "Germany",
+                NaiveDate::from_ymd_res(2000, 6, 1)?,
+                "Christi Himmelfahrt",
+            ),
+            Holiday::new(
+                Country::DE,
+                "Germany",
+                NaiveDate::from_ymd_res(2000, 6, 12)?,
+                "Pfingstmontag",
+            ),
+        ]
+        .into_iter()
+        .map(|h| (h.date, h))
+        .collect();
 
         map.insert(2000, m);
     }
