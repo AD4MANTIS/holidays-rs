@@ -1,11 +1,11 @@
-//! Germany (North Rhine-Westphalia (Nordrhein-Westfalen))
+//! Germany (Brandenburg)
 use std::collections::{BTreeMap, HashMap};
 
 use chrono::NaiveDate;
 
 use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
 
-/// Generate holiday map for Germany (North Rhine-Westphalia (Nordrhein-Westfalen)).
+/// Generate holiday map for Germany (Brandenburg).
 #[allow(unused_mut, unused_variables)]
 pub fn build(
     years: Option<&std::ops::Range<Year>>,
@@ -34,12 +34,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2000, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2000, 6, 22)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2000, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2000, 4, 23)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2000, 6, 11)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2000, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -64,12 +65,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2001, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2001, 6, 14)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2001, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2001, 4, 15)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2001, 6, 3)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2001, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -94,12 +96,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2002, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2002, 5, 30)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2002, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2002, 3, 31)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2002, 5, 19)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2002, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -124,12 +127,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2003, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2003, 6, 19)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2003, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2003, 4, 20)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2003, 6, 8)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2003, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -154,12 +158,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2004, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2004, 6, 10)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2004, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2004, 4, 11)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2004, 5, 30)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2004, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -184,12 +189,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2005, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2005, 5, 26)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2005, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2005, 3, 27)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2005, 5, 15)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2005, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -214,12 +220,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2006, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2006, 6, 15)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2006, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2006, 4, 16)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2006, 6, 4)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2006, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -244,12 +251,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2007, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2007, 6, 7)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2007, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2007, 4, 8)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2007, 5, 27)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2007, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -276,12 +284,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2008, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2008, 5, 22)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2008, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2008, 3, 23)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2008, 5, 11)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2008, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -306,12 +315,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2009, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2009, 6, 11)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2009, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2009, 4, 12)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2009, 5, 31)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2009, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -336,12 +346,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2010, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2010, 6, 3)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2010, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2010, 4, 4)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2010, 5, 23)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2010, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -366,12 +377,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2011, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2011, 6, 23)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2011, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2011, 4, 24)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2011, 6, 12)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2011, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -396,12 +408,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2012, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2012, 6, 7)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2012, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2012, 4, 8)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2012, 5, 27)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2012, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -426,12 +439,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2013, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2013, 5, 30)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2013, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2013, 3, 31)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2013, 5, 19)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2013, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -456,12 +470,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2014, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2014, 6, 19)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2014, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2014, 4, 20)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2014, 6, 8)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2014, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -486,12 +501,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2015, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2015, 6, 4)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2015, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2015, 4, 5)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2015, 5, 24)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2015, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -516,12 +532,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2016, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2016, 5, 26)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2016, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2016, 3, 27)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2016, 5, 15)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2016, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -547,12 +564,12 @@ pub fn build(
                 "Zweiter Weihnachtstag",
             ),
             (NaiveDate::from_ymd_res(2017, 10, 31)?, "Reformationstag"),
-            (NaiveDate::from_ymd_res(2017, 6, 15)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2017, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2017, 4, 16)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2017, 6, 4)?, "Pfingstsonntag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -577,12 +594,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2018, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2018, 5, 31)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2018, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2018, 4, 1)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2018, 5, 20)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2018, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -607,12 +625,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2019, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2019, 6, 20)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2019, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2019, 4, 21)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2019, 6, 9)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2019, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -637,12 +656,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2020, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2020, 6, 11)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2020, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2020, 4, 12)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2020, 5, 31)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2020, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -667,12 +687,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2021, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2021, 6, 3)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2021, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2021, 4, 4)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2021, 5, 23)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2021, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -697,12 +718,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2022, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2022, 6, 16)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2022, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2022, 4, 17)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2022, 6, 5)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2022, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -727,12 +749,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2023, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2023, 6, 8)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2023, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2023, 4, 9)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2023, 5, 28)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2023, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -757,12 +780,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2024, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2024, 5, 30)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2024, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2024, 3, 31)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2024, 5, 19)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2024, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -787,12 +811,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2025, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2025, 6, 19)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2025, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2025, 4, 20)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2025, 6, 8)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2025, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -817,12 +842,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2026, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2026, 6, 4)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2026, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2026, 4, 5)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2026, 5, 24)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2026, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -847,12 +873,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2027, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2027, 5, 27)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2027, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2027, 3, 28)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2027, 5, 16)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2027, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -877,12 +904,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2028, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2028, 6, 15)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2028, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2028, 4, 16)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2028, 6, 4)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2028, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -907,12 +935,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2029, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2029, 5, 31)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2029, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2029, 4, 1)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2029, 5, 20)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2029, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     build_year(
@@ -937,12 +966,13 @@ pub fn build(
                 NaiveDate::from_ymd_res(2030, 12, 26)?,
                 "Zweiter Weihnachtstag",
             ),
-            (NaiveDate::from_ymd_res(2030, 6, 20)?, "Fronleichnam"),
-            (NaiveDate::from_ymd_res(2030, 11, 1)?, "Allerheiligen"),
+            (NaiveDate::from_ymd_res(2030, 4, 21)?, "Ostersonntag"),
+            (NaiveDate::from_ymd_res(2030, 6, 9)?, "Pfingstsonntag"),
+            (NaiveDate::from_ymd_res(2030, 10, 31)?, "Reformationstag"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_BB,
+        "Germany (Brandenburg)",
     );
 
     Ok(map)

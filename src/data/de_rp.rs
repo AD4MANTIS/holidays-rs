@@ -1,11 +1,11 @@
-//! Germany (North Rhine-Westphalia (Nordrhein-Westfalen))
+//! Germany (Rhineland-Palatinate (Rheinland-Pfalz))
 use std::collections::{BTreeMap, HashMap};
 
 use chrono::NaiveDate;
 
 use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
 
-/// Generate holiday map for Germany (North Rhine-Westphalia (Nordrhein-Westfalen)).
+/// Generate holiday map for Germany (Rhineland-Palatinate (Rheinland-Pfalz)).
 #[allow(unused_mut, unused_variables)]
 pub fn build(
     years: Option<&std::ops::Range<Year>>,
@@ -38,8 +38,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2000, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -68,8 +68,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2001, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -98,8 +98,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2002, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -128,8 +128,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2003, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -158,8 +158,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2004, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -188,8 +188,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2005, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -218,8 +218,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2006, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -248,8 +248,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2007, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -280,8 +280,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2008, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -310,8 +310,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2009, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -340,8 +340,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2010, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -370,8 +370,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2011, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -400,8 +400,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2012, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -430,8 +430,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2013, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -460,8 +460,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2014, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -490,8 +490,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2015, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -520,8 +520,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2016, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -551,8 +551,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2017, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -581,8 +581,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2018, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -611,8 +611,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2019, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -641,8 +641,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2020, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -671,8 +671,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2021, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -701,8 +701,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2022, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -731,8 +731,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2023, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -761,8 +761,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2024, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -791,8 +791,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2025, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -821,8 +821,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2026, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -851,8 +851,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2027, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -881,8 +881,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2028, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -911,8 +911,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2029, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     build_year(
@@ -941,8 +941,8 @@ pub fn build(
             (NaiveDate::from_ymd_res(2030, 11, 1)?, "Allerheiligen"),
         ],
         &mut map,
-        Country::DE_NW,
-        "Germany (North Rhine-Westphalia (Nordrhein-Westfalen))",
+        Country::DE_RP,
+        "Germany (Rhineland-Palatinate (Rheinland-Pfalz))",
     );
 
     Ok(map)
