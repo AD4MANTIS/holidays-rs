@@ -1,4 +1,5 @@
 import holidays
+import os
 from dataclasses import dataclass
 from jinja2 import Environment
 
@@ -7,6 +8,8 @@ from jinja2 import Environment
 class Country:
     code: str
     name: str
+    subdivision_code: str = None
+    subdivision_name: str = None
 
 
 countries = [
@@ -45,6 +48,7 @@ countries = [
     Country("FR", "France"),
     Country("GE", "Georgia"),
     Country("DE", "Germany"),
+    Country("DE", "Germany", "NW", "Nordrhein-Westfalen"),
     Country("GR", "Greece"),
     Country("HN", "Honduras"),
     Country("HK", "Hong Kong"),
@@ -120,12 +124,13 @@ use crate::Error;
 
 /// Two-letter country codes defined in ISO 3166-1 alpha-2 .
 #[allow(dead_code)]
+#[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash, PartialOrd, Ord)]
 pub enum Country {
 {%- for country in countries %}
-  #[cfg(feature = "{{country.code}}")]
-  /// {{country.name}}
-  {{country.code}},
+    #[cfg(feature = "{{country.code}}")]
+    /// {{country|display_name}}
+    {{country|enum_name}},
 {%- endfor %}
 }
 
@@ -136,28 +141,28 @@ impl std::fmt::Display for Country {
 }
 
 impl AsRef<str> for Country {
-  fn as_ref(&self) -> &str {
-    match self {
+    fn as_ref(&self) -> &str {
+        match self {
 {%- for country in countries %}
-      #[cfg(feature = "{{country.code}}")]
-      Country::{{country.code}} => "{{country.code}}",
+            #[cfg(feature = "{{country.code}}")]
+            Country::{{country|enum_name}} => "{{country|enum_name}}",
 {%- endfor %}
+        }
     }
-  }
 }
 
 impl std::str::FromStr for Country {
-  type Err = Error;
+    type Err = Error;
 
-  fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-    Ok(match s {
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        Ok(match s {
 {%- for country in countries %}
-      #[cfg(feature = "{{country.code}}")]
-      "{{country.code}}" => Country::{{country.code}}, 
+            #[cfg(feature = "{{country.code}}")]
+            "{{country|enum_name}}" => Country::{{country|enum_name}},
 {%- endfor %}
-      _ => return Err(Error::CountryNotAvailable),
-    })
-  }
+            _ => return Err(Error::CountryNotAvailable),
+        })
+    }
 }
 
 """
@@ -165,62 +170,62 @@ impl std::str::FromStr for Country {
 build = """
 use std::collections::HashSet;
 
-use crate::{data::*, prelude::*, HolidayMap, Result, Year};
+use crate::{data, prelude::*, HolidayMap, Result, Year};
 
 /// Generate holiday map for the specified countries and years.
 pub fn build(countries: Option<&HashSet<Country>>, years: Option<&std::ops::Range<Year>>) -> Result<HolidayMap> {
-  let mut map = HolidayMap::new();
+    let mut map = HolidayMap::new();
+
 {% for country in countries %}
-  #[cfg(feature = "{{country.code}}")]
-  if countries.is_none() || countries.unwrap().contains(&Country::{{country.code}}) {
-      map.insert(Country::{{country.code}}, {{country.code|escape}}::build(&years)?);
-  }
+    #[cfg(feature = "{{country.code}}")]
+    if countries.map_or(true, |c| c.contains(&Country::{{country|enum_name}})) {
+        map.insert(Country::{{country|enum_name}}, data::{{country|mod_name|escape}}::build(years)?);
+    }
 {% endfor %}
-  Ok(map)
+
+    Ok(map)
 }
 
 """
 
 country_mod = """
-use std::collections::BTreeMap;
-use std::collections::HashMap;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
-use chrono::NaiveDate;
-
 {% for country in countries %}
 #[cfg(feature = "{{country.code}}")]
-pub mod {{country.code|escape}};
+pub mod {{country|mod_name|escape}};
 {% endfor %}
 """
 
 build_country = """
-//! {{country}}
-use super::*;
+//! {{country|display_name}}
+use std::collections::{BTreeMap, HashMap};
 
-/// Generate holiday map for {{country}}.
+use chrono::NaiveDate;
+
+use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
+
+/// Generate holiday map for {{country|display_name}}.
 #[allow(unused_mut, unused_variables)]
-pub fn build(years: &Option<&std::ops::Range<Year>>) -> Result<HashMap<Year, BTreeMap<NaiveDate, Holiday>>> {
-  let mut map = HashMap::new();
+pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HashMap<Year, BTreeMap<NaiveDate, Holiday>>> {
+    let mut map = HashMap::new();
 
-{%- for year in years %}
-{% if holiday(years=year) %}
-  build_year(
-    years,
-    {{year}},
-    vec![
-{% for date, name in holiday(years=year).items() %}
-      (NaiveDate::from_ymd_res({{date|year}}, {{date|month}}, {{date|day}})?, "{{name}}"),
+{% for year in years %}
+{% if holiday(years=year, subdiv=country.subdivision_code) %}
+    build_year(
+        years,
+        {{year}},
+        vec![
+{% for date, name in holiday(years=year, subdiv=country.subdivision_code).items() %}
+        (NaiveDate::from_ymd_res({{date|year}}, {{date|month}}, {{date|day}})?, "{{name}}"),
 {%- endfor %}
-    ],
-    &mut map,
-    Country::{{code}},
-    "{{country}}",
-  );
+        ],
+        &mut map,
+        Country::{{country|enum_name}},
+        "{{country|display_name}}",
+    );
 {%- endif %}
 {%- endfor  %}
 
-  Ok(map)
+    Ok(map)
 }
 """
 
@@ -237,10 +242,20 @@ def escape(code: str) -> str:
     else:
         return lower
 
+def enum_name(country: Country) -> str:
+    if country.subdivision_code == None:
+        return country.code
+    else:
+        return country.code + "_" + country.subdivision_code
 
-def empty_holiday(**kwargs):
-    return {}
+def mod_name(country: Country) -> str:
+    return enum_name(country).lower()
 
+def display_name(country: Country) -> str:
+    if country.subdivision_name == None:
+        return country.name
+    else:
+        return country.name + " (" + country.subdivision_name + ")"
 
 if __name__ == "__main__":
     env = Environment()
@@ -248,7 +263,10 @@ if __name__ == "__main__":
     env.filters["month"] = lambda d: d.month
     env.filters["day"] = lambda d: d.day
     env.filters["escape"] = escape
-    env.filters["lower"] = lower
+    env.filters["enum_name"] = enum_name
+    env.filters["mod_name"] = mod_name
+    env.filters["display_name"] = display_name
+
     with open("src/country.rs", "w") as f:
         rendered = env.from_string(country).render(countries=countries)
         f.write(rendered)
@@ -260,13 +278,14 @@ if __name__ == "__main__":
     with open("src/data.rs", "w") as f:
         rendered = env.from_string(country_mod).render(countries=countries)
         f.write(rendered)
-        
+
+    os.makedirs("src/data", exist_ok=True)
     for country in countries:
-        with open("src/data/{}.rs".format(country.code.lower()), "w") as f:
-            holiday = getattr(holidays, country.code, None)
+        with open("src/data/{}.rs".format(mod_name(country)), "w") as f:
+            # Could use `getattr(holidays, country.code, {}).subdivisions` but this only has the codes and not the names.
+            holiday = getattr(holidays, country.code, {})
             rendered = env.from_string(build_country).render(
-                    code=country.code,
-                    country=country.name,
+                    country=country,
                     years=years,
-                    holiday=holiday or empty_holiday)
+                    holiday=holiday)
             f.write(rendered)

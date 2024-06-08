@@ -2,6 +2,7 @@ use crate::Error;
 
 /// Two-letter country codes defined in ISO 3166-1 alpha-2 .
 #[allow(dead_code)]
+#[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash, PartialOrd, Ord)]
 pub enum Country {
     #[cfg(feature = "AO")]
@@ -109,6 +110,9 @@ pub enum Country {
     #[cfg(feature = "DE")]
     /// Germany
     DE,
+    #[cfg(feature = "DE")]
+    /// Germany (Nordrhein-Westfalen)
+    DE_NW,
     #[cfg(feature = "GR")]
     /// Greece
     GR,
@@ -388,6 +392,8 @@ impl AsRef<str> for Country {
             Country::GE => "GE",
             #[cfg(feature = "DE")]
             Country::DE => "DE",
+            #[cfg(feature = "DE")]
+            Country::DE_NW => "DE_NW",
             #[cfg(feature = "GR")]
             Country::GR => "GR",
             #[cfg(feature = "HN")]
@@ -599,6 +605,8 @@ impl std::str::FromStr for Country {
             "GE" => Country::GE,
             #[cfg(feature = "DE")]
             "DE" => Country::DE,
+            #[cfg(feature = "DE")]
+            "DE_NW" => Country::DE_NW,
             #[cfg(feature = "GR")]
             "GR" => Country::GR,
             #[cfg(feature = "HN")]

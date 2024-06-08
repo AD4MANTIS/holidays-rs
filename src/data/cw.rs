@@ -1,10 +1,14 @@
 //! Curaçao
-use super::*;
+use std::collections::{BTreeMap, HashMap};
+
+use chrono::NaiveDate;
+
+use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
 
 /// Generate holiday map for Curaçao.
 #[allow(unused_mut, unused_variables)]
 pub fn build(
-    years: &Option<&std::ops::Range<Year>>,
+    years: Option<&std::ops::Range<Year>>,
 ) -> Result<HashMap<Year, BTreeMap<NaiveDate, Holiday>>> {
     let mut map = HashMap::new();
 

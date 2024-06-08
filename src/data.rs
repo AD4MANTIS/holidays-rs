@@ -1,9 +1,3 @@
-use std::collections::BTreeMap;
-use std::collections::HashMap;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
-use chrono::NaiveDate;
-
 #[cfg(feature = "AO")]
 pub mod ao;
 
@@ -108,6 +102,9 @@ pub mod ge;
 
 #[cfg(feature = "DE")]
 pub mod de;
+
+#[cfg(feature = "DE")]
+pub mod de_nw;
 
 #[cfg(feature = "GR")]
 pub mod gr;
