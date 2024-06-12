@@ -1,5 +1,4 @@
 import holidays
-import os
 from dataclasses import dataclass
 from jinja2 import Environment
 
@@ -357,7 +356,6 @@ if __name__ == "__main__":
         rendered = env.from_string(country_mod).render(countries=countries)
         f.write(rendered)
 
-    os.makedirs("src/data", exist_ok=True)
     for country in countries:
         with open("src/data/{}.rs".format(mod_name(country)), "w") as f:
             # Could use `getattr(holidays, country.code, {}).subdivisions` but this only has the codes and not the names.
