@@ -2,16 +2,19 @@ use chrono::NaiveDate;
 
 use crate::{prelude::*, Holiday, HolidayPerCountryMap, Year};
 
-#[allow(clippy::needless_pass_by_value)]
+pub fn should_build_year(years: &Option<&std::ops::Range<Year>>, year: Year) -> bool {
+    years.map_or(true, |r| r.contains(&year))
+}
+
 pub fn build_year(
-    years: Option<&std::ops::Range<Year>>,
+    years: &Option<&std::ops::Range<Year>>,
     year: Year,
     holidays: impl IntoIterator<Item = (NaiveDate, &'static str)>,
     map: &mut HolidayPerCountryMap,
     country: Country,
     county_name: impl ToString,
 ) {
-    if years.map_or(false, |r| !r.contains(&year)) {
+    if !should_build_year(years, year) {
         return;
     }
 

@@ -348,7 +348,7 @@ if __name__ == "__main__":
         rendered = env.from_string(build).render(countries=countries)
         f.write(rendered)
     
-    with open("src/data.rs", "w") as f:
+    with open("src/data/mod.rs", "w") as f:
         rendered = env.from_string(country_mod).render(countries=countries)
         f.write(rendered)
 
