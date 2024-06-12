@@ -262,6 +262,15 @@ pub fn build(countries: Option<&HashSet<Country>>, years: Option<&std::ops::Rang
 """
 
 country_mod = """
+mod helper;
+
+use crate::{prelude::*, Holiday, NaiveDateExt, Result, Year};
+use helper::build_year;
+
+use chrono::NaiveDate;
+use std::collections::BTreeMap;
+use std::collections::HashMap;
+
 {% for country in countries %}
 #[cfg(feature = "{{country.code}}")]
 pub mod {{country|mod_name|escape}};
@@ -270,11 +279,7 @@ pub mod {{country|mod_name|escape}};
 
 build_country = """
 //! {{country|display_name}}
-use std::collections::{BTreeMap, HashMap};
-
-use chrono::NaiveDate;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
+use super::*;
 
 /// Generate holiday map for {{country|display_name}}.
 #[allow(unused_mut, unused_variables)]

@@ -1,9 +1,5 @@
 //! Germany (Hesse (Hessen))
-use std::collections::{BTreeMap, HashMap};
-
-use chrono::NaiveDate;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
+use super::*;
 
 /// Generate holiday map for Germany (Hesse (Hessen)).
 #[allow(unused_mut, unused_variables)]

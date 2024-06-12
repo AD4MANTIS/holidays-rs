@@ -1,9 +1,5 @@
 //! United States (Vermont)
-use std::collections::{BTreeMap, HashMap};
-
-use chrono::NaiveDate;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
+use super::*;
 
 /// Generate holiday map for United States (Vermont).
 #[allow(unused_mut, unused_variables)]

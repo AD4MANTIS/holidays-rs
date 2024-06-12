@@ -1,9 +1,5 @@
 //! Vietnam
-use std::collections::{BTreeMap, HashMap};
-
-use chrono::NaiveDate;
-
-use crate::{build_help::build_year, prelude::*, Holiday, NaiveDateExt, Result, Year};
+use super::*;
 
 /// Generate holiday map for Vietnam.
 #[allow(unused_mut, unused_variables)]
