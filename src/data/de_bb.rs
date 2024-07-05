@@ -12,15 +12,14 @@ const COUNTY_CODE: Country = Country::DE_BB;
     clippy::too_many_lines,
     clippy::missing_errors_doc
 )]
-pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryMap> {
+pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerYearMap> {
     let mut map = HashMap::new();
 
     let mut national_holidays = de::build(years)?;
 
-    build_subdivision_year(
+    build_year(
         years,
         2000,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2000, 4, 23)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2000, 6, 11)?, "Pfingstsonntag"),
@@ -31,10 +30,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2001,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2001, 4, 15)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2001, 6, 3)?, "Pfingstsonntag"),
@@ -45,10 +43,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2002,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2002, 3, 31)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2002, 5, 19)?, "Pfingstsonntag"),
@@ -59,10 +56,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2003,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2003, 4, 20)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2003, 6, 8)?, "Pfingstsonntag"),
@@ -73,10 +69,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2004,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2004, 4, 11)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2004, 5, 30)?, "Pfingstsonntag"),
@@ -87,10 +82,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2005,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2005, 3, 27)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2005, 5, 15)?, "Pfingstsonntag"),
@@ -101,10 +95,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2006,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2006, 4, 16)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2006, 6, 4)?, "Pfingstsonntag"),
@@ -115,10 +108,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2007,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2007, 4, 8)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2007, 5, 27)?, "Pfingstsonntag"),
@@ -129,10 +121,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2008,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2008, 3, 23)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2008, 5, 11)?, "Pfingstsonntag"),
@@ -143,10 +134,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2009,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2009, 4, 12)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2009, 5, 31)?, "Pfingstsonntag"),
@@ -157,10 +147,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2010,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2010, 4, 4)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2010, 5, 23)?, "Pfingstsonntag"),
@@ -171,10 +160,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2011,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2011, 4, 24)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2011, 6, 12)?, "Pfingstsonntag"),
@@ -185,10 +173,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2012,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2012, 4, 8)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2012, 5, 27)?, "Pfingstsonntag"),
@@ -199,10 +186,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2013,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2013, 3, 31)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2013, 5, 19)?, "Pfingstsonntag"),
@@ -213,10 +199,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2014,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2014, 4, 20)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2014, 6, 8)?, "Pfingstsonntag"),
@@ -227,10 +212,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2015,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2015, 4, 5)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2015, 5, 24)?, "Pfingstsonntag"),
@@ -241,10 +225,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2016,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2016, 3, 27)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2016, 5, 15)?, "Pfingstsonntag"),
@@ -255,10 +238,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2017,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2017, 4, 16)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2017, 6, 4)?, "Pfingstsonntag"),
@@ -268,10 +250,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2018,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2018, 4, 1)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2018, 5, 20)?, "Pfingstsonntag"),
@@ -282,10 +263,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2019,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2019, 4, 21)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2019, 6, 9)?, "Pfingstsonntag"),
@@ -296,10 +276,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2020,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2020, 4, 12)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2020, 5, 31)?, "Pfingstsonntag"),
@@ -310,10 +289,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2021,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2021, 4, 4)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2021, 5, 23)?, "Pfingstsonntag"),
@@ -324,10 +302,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2022,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2022, 4, 17)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2022, 6, 5)?, "Pfingstsonntag"),
@@ -338,10 +315,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2023,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2023, 4, 9)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2023, 5, 28)?, "Pfingstsonntag"),
@@ -352,10 +328,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2024,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2024, 3, 31)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2024, 5, 19)?, "Pfingstsonntag"),
@@ -366,10 +341,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2025,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2025, 4, 20)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2025, 6, 8)?, "Pfingstsonntag"),
@@ -380,10 +354,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2026,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2026, 4, 5)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2026, 5, 24)?, "Pfingstsonntag"),
@@ -394,10 +367,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2027,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2027, 3, 28)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2027, 5, 16)?, "Pfingstsonntag"),
@@ -408,10 +380,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2028,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2028, 4, 16)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2028, 6, 4)?, "Pfingstsonntag"),
@@ -422,10 +393,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2029,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2029, 4, 1)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2029, 5, 20)?, "Pfingstsonntag"),
@@ -436,10 +406,9 @@ pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryM
         COUNTY_NAME,
     );
 
-    build_subdivision_year(
+    build_year(
         years,
         2030,
-        &mut national_holidays,
         [
             (NaiveDate::from_ymd_res(2030, 4, 21)?, "Ostersonntag"),
             (NaiveDate::from_ymd_res(2030, 6, 9)?, "Pfingstsonntag"),

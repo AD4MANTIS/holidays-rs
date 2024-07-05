@@ -146,3 +146,28 @@ fn iterate_year_not_available() -> anyhow::Result<()> {
 
     Ok(())
 }
+
+#[test]
+#[serial]
+fn iterate_subdivision() -> anyhow::Result<()> {
+    Builder::new()
+        .countries(&[Country::DE, Country::DE_NW])
+        .years(2024..2025)
+        .init()?;
+
+    let s = NaiveDate::from_ymd_res(2024, 5, 1)?;
+    let u = NaiveDate::from_ymd_res(2024, 5, 31)?;
+    assert_eq!(
+        vec![
+            NaiveDate::from_ymd_res(2024, 5, 1)?,
+            NaiveDate::from_ymd_res(2024, 5, 9)?,
+            NaiveDate::from_ymd_res(2024, 5, 20)?,
+            NaiveDate::from_ymd_res(2024, 5, 30)?,
+        ],
+        iter(Country::DE_NW, s, u)?
+            .map(|h| h.date)
+            .collect::<Vec<_>>()
+    );
+
+    Ok(())
+}

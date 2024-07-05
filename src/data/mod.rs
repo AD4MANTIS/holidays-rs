@@ -1,7 +1,7 @@
 mod helper;
 
-use crate::{prelude::*, HolidayPerCountryMap, NaiveDateExt, Result, Year};
-use helper::{build_subdivision_year, build_year};
+use crate::{prelude::*, HolidayPerYearMap, NaiveDateExt, Result, Year};
+use helper::build_year;
 
 use chrono::NaiveDate;
 use std::collections::HashMap;

@@ -7,9 +7,8 @@ from jinja2 import Environment
 class Country:
     code: str
     name: str
-    subdivision_code: str = None
-    subdivision_name: str = None
-
+    subdivision_code: str | None = None
+    subdivision_name: str | None = None
 
 countries = [
     Country("AO", "Angola"),
@@ -239,6 +238,24 @@ impl std::str::FromStr for Country {
     }
 }
 
+impl Country {
+    #[must_use]
+    pub fn country_from_subdivision(subdivision: Country) -> Option<Self> {
+        Some(match subdivision {
+{%- for country in countries %}
+{%- if country.subdivision_code == None and subdivisionsPerCountry[country.code] %}
+        #[cfg(feature = "{{country.code}}")]
+{%- for subdiv in subdivisionsPerCountry[country.code] %}
+        | Country::{{subdiv|enum_name}}
+{%- endfor %}   
+        => Country::{{country|enum_name}},
+{%- endif %}
+{%- endfor %}
+            _ => return None,
+        })
+    }
+}
+
 """
 
 build = """
@@ -273,8 +290,8 @@ pub fn build(countries: Option<&HashSet<Country>>, years: Option<&std::ops::Rang
 country_mod = """
 mod helper;
 
-use crate::{prelude::*, HolidayPerCountryMap, NaiveDateExt, Result, Year};
-use helper::{build_subdivision_year, build_year};
+use crate::{prelude::*, HolidayPerYearMap, NaiveDateExt, Result, Year};
+use helper::build_year;
 
 use chrono::NaiveDate;
 use std::collections::HashMap;
@@ -295,25 +312,18 @@ const COUNTY_CODE: Country = Country::{{country|enum_name}};
 
 /// Generate holiday map for {{country|display_name}}.
 #[allow(unused_mut, unused_variables, clippy::too_many_lines, clippy::missing_errors_doc)]
-pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryMap> {
+pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerYearMap> {
     let mut map = HashMap::new();
-{% if country.subdivision_code != None %}
+{% if country.subdivision_code %}
     let mut national_holidays = de::build(years)?;
 {%- endif %}
 
 {%- for year in years %}
 {% if holiday(years=year, subdiv=country.subdivision_code) %}
 
-{%- if country.subdivision_code != None %}
-    build_subdivision_year(
-        years,
-        {{year}},
-        &mut national_holidays,
-{%- else %}
     build_year(
         years,
         {{year}},
-{%- endif %}
         [
 {%- for date, name in holiday(years=year, subdiv=country.subdivision_code).items() %}
 {%- if country.subdivision_code == None or date not in holiday(years=year) %}
@@ -345,19 +355,27 @@ def escape(code: str) -> str:
         return lower
 
 def enum_name(country: Country) -> str:
-    if country.subdivision_code == None:
-        return country.code
+    if country.subdivision_code:
+        return f"{country.code}_{country.subdivision_code}"
     else:
-        return country.code + "_" + country.subdivision_code
+        return country.code
 
 def mod_name(country: Country) -> str:
     return enum_name(country).lower()
 
 def display_name(country: Country) -> str:
-    if country.subdivision_name == None:
-        return country.name
+    if country.subdivision_name:
+        return f"{country.name} ({country.subdivision_name})"
     else:
-        return country.name + " (" + country.subdivision_name + ")"
+        return country.name
+
+def subdivisionsPerCountry(countries: list[Country]) -> dict[str, list[Country]]:
+    subdivisionsPerCountry = {}
+    for country in countries:
+        if country.subdivision_code == None:
+            subdivisionsPerCountry[country.code] = list(filter(lambda c: c.subdivision_code and c.code == country.code, countries))
+
+    return subdivisionsPerCountry
 
 if __name__ == "__main__":
     env = Environment()
@@ -370,7 +388,9 @@ if __name__ == "__main__":
     env.filters["display_name"] = display_name
 
     with open("src/country.rs", "w") as f:
-        rendered = env.from_string(country).render(countries=countries)
+        rendered = env.from_string(country).render(
+            countries=countries,
+            subdivisionsPerCountry=subdivisionsPerCountry(countries))
         f.write(rendered)
 
     with open("src/build.rs", "w") as f:
@@ -383,7 +403,6 @@ if __name__ == "__main__":
 
     for country in countries:
         with open("src/data/{}.rs".format(mod_name(country)), "w") as f:
-            # Could use `getattr(holidays, country.code, {}).subdivisions` but this only has the codes and not the names.
             holiday = getattr(holidays, country.code, {})
             rendered = env.from_string(build_country).render(
                     country=country,

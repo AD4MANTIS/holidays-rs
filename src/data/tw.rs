@@ -12,7 +12,7 @@ const COUNTY_CODE: Country = Country::TW;
     clippy::too_many_lines,
     clippy::missing_errors_doc
 )]
-pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerCountryMap> {
+pub fn build(years: Option<&std::ops::Range<Year>>) -> Result<HolidayPerYearMap> {
     let mut map = HashMap::new();
 
     build_year(

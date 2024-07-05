@@ -1256,3 +1256,88 @@ impl std::str::FromStr for Country {
         })
     }
 }
+
+impl Country {
+    #[must_use]
+    pub fn country_from_subdivision(subdivision: Country) -> Option<Self> {
+        Some(match subdivision {
+            #[cfg(feature = "DE")]
+            Country::DE_BB
+            | Country::DE_BE
+            | Country::DE_BW
+            | Country::DE_BY
+            | Country::DE_BYP
+            | Country::DE_HB
+            | Country::DE_HE
+            | Country::DE_HH
+            | Country::DE_MV
+            | Country::DE_NI
+            | Country::DE_NW
+            | Country::DE_RP
+            | Country::DE_SH
+            | Country::DE_SL
+            | Country::DE_SN
+            | Country::DE_ST
+            | Country::DE_TH => Country::DE,
+            #[cfg(feature = "US")]
+            Country::US_AK
+            | Country::US_AL
+            | Country::US_AR
+            | Country::US_AS
+            | Country::US_AZ
+            | Country::US_CA
+            | Country::US_CO
+            | Country::US_CT
+            | Country::US_DC
+            | Country::US_DE
+            | Country::US_FL
+            | Country::US_GA
+            | Country::US_GU
+            | Country::US_HI
+            | Country::US_IA
+            | Country::US_ID
+            | Country::US_IL
+            | Country::US_IN
+            | Country::US_KS
+            | Country::US_KY
+            | Country::US_LA
+            | Country::US_MA
+            | Country::US_MD
+            | Country::US_ME
+            | Country::US_MI
+            | Country::US_MN
+            | Country::US_MO
+            | Country::US_MP
+            | Country::US_MS
+            | Country::US_MT
+            | Country::US_NC
+            | Country::US_ND
+            | Country::US_NE
+            | Country::US_NH
+            | Country::US_NJ
+            | Country::US_NM
+            | Country::US_NV
+            | Country::US_NY
+            | Country::US_OH
+            | Country::US_OK
+            | Country::US_OR
+            | Country::US_PA
+            | Country::US_PR
+            | Country::US_RI
+            | Country::US_SC
+            | Country::US_SD
+            | Country::US_TN
+            | Country::US_TX
+            | Country::US_UM
+            | Country::US_UT
+            | Country::US_VA
+            | Country::US_VI
+            | Country::US_VT
+            | Country::US_WA
+            | Country::US_WI
+            | Country::US_WV
+            | Country::US_WY => Country::US,
+            _ => return None,
+        })
+    }
+}

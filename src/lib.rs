@@ -15,8 +15,9 @@ use std::{
 };
 
 /// Type alias for Holiday map.
-pub type HolidayPerCountryMap = HashMap<Year, BTreeMap<NaiveDate, Holiday>>;
-pub type HolidayMap = HashMap<Country, HolidayPerCountryMap>;
+pub type HolidayPerDayMap = BTreeMap<NaiveDate, Holiday>;
+pub type HolidayPerYearMap = HashMap<Year, HolidayPerDayMap>;
+pub type HolidayMap = HashMap<Country, HolidayPerYearMap>;
 
 /// Type alias for Year.
 pub type Year = i32;
@@ -45,7 +46,7 @@ pub fn get(country: Country, date: NaiveDate) -> Result<Option<Holiday>> {
 
     let map = get_map_for_country_and_year(&holiday_map, country, date.year())?;
 
-    Ok(map.get(&date).cloned())
+    Ok(map.get(date).cloned())
 }
 
 /// Check if the specified date is a holiday. If the specified country or year is
@@ -57,7 +58,7 @@ pub fn contains(country: Country, date: NaiveDate) -> Result<bool> {
 
     let map = get_map_for_country_and_year(&holiday_map, country, date.year())?;
 
-    Ok(map.get(&date).is_some())
+    Ok(map.get(date).is_some())
 }
 
 fn get_holiday_map() -> Result<RwLockReadGuard<'static, HolidayMap>> {
@@ -65,16 +66,39 @@ fn get_holiday_map() -> Result<RwLockReadGuard<'static, HolidayMap>> {
     data.read().map_err(|e| Error::LockError(e.to_string()))
 }
 
+struct CountryWithSubdivision<'a> {
+    country: &'a HolidayPerDayMap,
+    subdivision: Option<&'a HolidayPerDayMap>,
+}
+
+impl<'a> CountryWithSubdivision<'a> {
+    pub fn get(&self, date: NaiveDate) -> Option<&Holiday> {
+        self.country
+            .get(&date)
+            .or_else(|| self.subdivision.and_then(|s| s.get(&date)))
+    }
+}
+
 fn get_map_for_country_and_year<'a>(
     holiday_map: &'a RwLockReadGuard<'a, HolidayMap>,
     country: Country,
     year: Year,
-) -> Result<&'a BTreeMap<NaiveDate, Holiday>> {
+) -> Result<CountryWithSubdivision<'a>> {
+    let (country, subdivision) = Country::country_from_subdivision(country)
+        .map_or_else(|| (country, None), |c| (c, Some(country)));
+
     let map = holiday_map
         .get(&country)
         .ok_or(Error::CountryNotAvailable)?;
+
     let map = map.get(&year).ok_or(Error::YearNotAvailable)?;
-    Ok(map)
+
+    Ok(CountryWithSubdivision {
+        country: map,
+        subdivision: subdivision
+            .and_then(|subdiv| holiday_map.get(&subdiv))
+            .and_then(|m| m.get(&year)),
+    })
 }
 
 /// Represents a holiday.
