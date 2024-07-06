@@ -1,6 +1,24 @@
+use std::collections::HashSet;
+
 use chrono::NaiveDate;
 
 use crate::{prelude::*, Holiday, HolidayPerYearMap, Year};
+
+pub fn should_build(countries: Option<&HashSet<Country>>, country: Country) -> bool {
+    match countries {
+        Some(c) => c.contains(&country),
+        None => true,
+    }
+}
+
+pub fn add_main_country_from_subdivisions(c: &mut HashSet<Country>) {
+    c.extend(
+        c.iter()
+            .copied()
+            .filter_map(Country::country_from_subdivision)
+            .collect::<Vec<_>>(),
+    );
+}
 
 pub fn should_build_year(years: Option<&std::ops::Range<Year>>, year: Year) -> bool {
     years.map_or(true, |r| r.contains(&year))

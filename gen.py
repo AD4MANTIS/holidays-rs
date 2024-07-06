@@ -261,18 +261,25 @@ impl Country {
 build = """
 use std::collections::HashSet;
 
-use crate::{data, prelude::*, HolidayMap, Result, Year};
-
-fn should_build(countries: Option<&HashSet<Country>>, country: Country) -> bool {
-    match countries {
-        Some(c) => c.contains(&country),
-        None => true,
-    }
-}
+use crate::{
+    data::{
+        self,
+        helper::{add_main_country_from_subdivisions, should_build},
+    },
+    prelude::*,
+    HolidayMap, Result, Year,
+};
 
 /// Generate holiday map for the specified countries and years.
 #[allow(clippy::too_many_lines)]
-pub fn build(countries: Option<&HashSet<Country>>, years: Option<&std::ops::Range<Year>>) -> Result<HolidayMap> {
+pub fn build(countries: Option<HashSet<Country>>, years: Option<&std::ops::Range<Year>>) -> Result<HolidayMap> {
+    let countries = countries.map(|mut c| {
+        add_main_country_from_subdivisions(&mut c);
+        c
+    });
+
+    let countries = countries.as_ref();
+
     let mut map = HolidayMap::new();
 
 {% for country in countries %}
@@ -288,7 +295,7 @@ pub fn build(countries: Option<&HashSet<Country>>, years: Option<&std::ops::Rang
 """
 
 country_mod = """
-mod helper;
+pub(super) mod helper;
 
 use crate::{prelude::*, HolidayPerYearMap, NaiveDateExt, Result, Year};
 use helper::build_year;

@@ -40,9 +40,9 @@ fn build_by_country() -> anyhow::Result<()> {
 
 #[test]
 #[serial]
-fn build_by_country_with_subdivision() -> anyhow::Result<()> {
+fn build_by_subdivision() -> anyhow::Result<()> {
     Builder::new()
-        .countries(&[Country::DE, Country::DE_NW])
+        .countries(&[Country::DE_NW])
         .years(2024..2025)
         .init()?;
 

@@ -30,7 +30,7 @@ impl Builder {
     #[allow(clippy::missing_errors_doc)]
     pub fn build(self) -> Result<HolidayMap> {
         let Builder { countries, years } = self;
-        build(countries.as_ref(), years.as_ref())
+        build(countries, years.as_ref())
     }
 
     /// Build and initialize holiday database.
